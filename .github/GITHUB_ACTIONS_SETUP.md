@@ -29,61 +29,146 @@ To enable automatic publishing to NPM, you need to add an NPM access token to Gi
 4. Value: Paste the token from Step 1
 5. Click **"Add secret"**
 
-## How It Works
+**Note:** `GITHUB_TOKEN` is automatically provided by GitHub, you don't need to create it.
 
-### CI Workflow (`.github/workflows/ci.yml`)
+---
 
-Triggers on:
+## Workflows
+
+### 1. CI Workflow (`.github/workflows/ci.yml`)
+
+**Triggers:**
 - Push to `main`
 - Pull requests to `main`
 
-Runs:
-- Type checking
-- Build
-- Test (placeholder)
+**Runs:**
+- TypeScript type checking
+- Build verification
+- Tests (placeholder)
 
-Matrix: Node.js 18.x and 20.x
+**Matrix:** Node.js 18.x and 20.x
 
-### CD Workflow (`.github/workflows/cd.yml`)
+### 2. CD Workflow (`.github/workflows/cd.yml`)
 
-Triggers on:
-- Push to `main` (only when source files change)
+**Triggers:**
+- Push to `main` (excluding changeset files)
 
-Steps:
-1. Install dependencies
-2. Run type check
-3. Build package
-4. Check if version already published
-5. Publish to NPM (if new version)
-6. Create GitHub Release
+**Runs:**
+- Build verification
+- Artifact upload
 
-## Version Bump Workflow
+### 3. Release Workflow (`.github/workflows/release.yml`)
 
-To release a new version:
+**Triggers:**
+- Push to `main`
 
-```bash
-# 1. Update version
-npm version patch   # 0.1.1 -> 0.1.2
-npm version minor   # 0.1.1 -> 0.2.0
-npm version major   # 0.1.1 -> 1.0.0
+**Behavior:**
+- If changesets exist: Creates "Version Packages" PR
+- If "Version Packages" PR merged: Publishes to NPM
 
-# 2. Push to main
-git push origin main
+---
 
-# 3. GitHub Actions will automatically publish!
-```
+## Changesets Workflow
 
-## Skipping CI
+### For Contributors
 
-To push without triggering workflows:
+When you make a change that should be released:
 
 ```bash
-# Skip all workflows
-git commit -m "docs: update [skip ci]"
+# 1. Make your changes
+# ... edit code ...
 
-# Skip only publish
-git commit -m "docs: update [skip-publish]"
+# 2. Add a changeset
+npx changeset
+
+# 3. Follow the prompts:
+#    - Select patch/minor/major
+#    - Write a summary
+
+# 4. Commit the changeset with your code
+git add .
+git commit -m "feat: add new feature"
+git push
 ```
+
+### For Maintainers
+
+When you're ready to release:
+
+1. The Changesets bot will create a "Version Packages" PR automatically
+2. Review the PR:
+   - Check version bumps are correct
+   - Review CHANGELOG updates
+3. Merge the PR
+4. The Release workflow will automatically:
+   - Update version in `package.json`
+   - Update `CHANGELOG.md`
+   - Publish to NPM
+   - Create GitHub Release
+
+---
+
+## Versioning Guide
+
+### When to use each type:
+
+| Type | Example | Version Change |
+|------|---------|----------------|
+| **patch** | Bug fix, docs update | 0.1.0 → 0.1.1 |
+| **minor** | New feature, new component | 0.1.0 → 0.2.0 |
+| **major** | Breaking change, API removal | 0.1.0 → 1.0.0 |
+
+### Example Changesets
+
+**Patch (bug fix):**
+```markdown
+---
+"@dendelion/mojo-ui": patch
+---
+
+Fix button hover state not working in Safari
+```
+
+**Minor (new feature):**
+```markdown
+---
+"@dendelion/mojo-ui": minor
+---
+
+Add new `Tooltip` component with 4 placement options
+```
+
+**Major (breaking change):**
+```markdown
+---
+"@dendelion/mojo-ui": major
+---
+
+Remove deprecated `OldButton` component
+```
+
+---
+
+## Manual Release (Emergency)
+
+If you need to publish manually:
+
+```bash
+# 1. Version packages locally
+npm run changeset:version
+
+# 2. Commit changes
+git add .
+git commit -m "chore: version packages"
+git push
+
+# 3. Publish to NPM
+npm run changeset:publish
+```
+
+**Note:** This requires `NPM_TOKEN` to be set in your environment.
+
+---
 
 ## Monitoring
 
@@ -94,16 +179,21 @@ Check workflow status:
 
 ## Troubleshooting
 
+### Changeset PR not created
+
+- Ensure you have changeset files in `.changeset/` directory
+- Check the Release workflow ran successfully
+- Look for errors in the Actions logs
+
 ### Publish fails with 403
 
-- Check `NPM_TOKEN` is correctly set
+- Check `NPM_TOKEN` is correctly set in GitHub Secrets
 - Verify token has write access to `@dendelion/mojo-ui`
 - Ensure 2FA bypass is enabled on the token
 
 ### Version already exists
 
-The CD workflow checks if the version is already published and skips if it is. 
-Bump the version with `npm version` before pushing.
+Changesets handles this automatically - it checks npm before publishing.
 
 ### Build fails
 

@@ -39,6 +39,10 @@
     "lint": "biome check ./src",
     "lint:fix": "biome check ./src --write",
     "ci": "npm run check-types && npm run build && npm run test",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
+    "release": "npm run ci && changeset publish",
     "publish:jsr": "npx jsr publish",
     "publish:jsr:dry": "npx jsr publish --dry-run",
     "publish:npm": "npm publish --access public"
@@ -72,6 +76,8 @@
     "clsx": "^2.0.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.31.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react-swc": "3.7.1",

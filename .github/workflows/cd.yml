@@ -1,27 +1,20 @@
-name: CD
+name: CD - Deploy
 
 on:
   push:
     branches: [main]
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'tsconfig.json'
-      - 'vite.config.ts'
-      - 'tailwind.config.js'
-      - 'tailwind.ts'
-      - '.github/workflows/cd.yml'
+    paths-ignore:
+      - '.changeset/**'
+      - 'CHANGELOG.md'
 
 jobs:
-  publish:
+  build-and-verify:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip-publish]')"
+    if: "!contains(github.event.head_commit.message, '[skip-deploy]')"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -39,34 +32,10 @@ jobs:
       - name: Run build
         run: npm run build
 
-      - name: Check if version is already published
-        id: check-version
-        run: |
-          PACKAGE_NAME=$(jq -r .name package.json)
-          PACKAGE_VERSION=$(jq -r .version package.json)
-          echo "Package: $PACKAGE_NAME@$PACKAGE_VERSION"
-          
-          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version > /dev/null 2>&1; then
-            echo "Version $PACKAGE_VERSION already published"
-            echo "published=true" >> $GITHUB_OUTPUT
-          else
-            echo "Version $PACKAGE_VERSION not published yet"
-            echo "published=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Publish to NPM
-        if: steps.check-version.outputs.published == 'false'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create GitHub Release
-        if: steps.check-version.outputs.published == 'false'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: v${{ steps.check-version.outputs.version || env.PACKAGE_VERSION }}
-          release_name: Release v${{ steps.check-version.outputs.version || env.PACKAGE_VERSION }}
-          draft: false
-          prerelease: false
+          name: dist
+          path: |
+            dist
+            !dist/**/*.map
