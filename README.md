@@ -1,6 +1,37 @@
 # @dendelion/mojo-ui
 
-Retro styled React component library with nature-themed design tokens and glassmorphism.
+<p align="center">
+  <strong>Retro styled React component library with nature-themed design tokens and glassmorphism.</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@dendelion/mojo-ui">
+    <img src="https://img.shields.io/npm/v/@dendelion/mojo-ui.svg?style=flat-square&color=%2347f57d" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@dendelion/mojo-ui">
+    <img src="https://img.shields.io/npm/dm/@dendelion/mojo-ui.svg?style=flat-square&color=%2347f57d" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/croco-dendy/mojo-ui/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/croco-dendy/mojo-ui/ci.yml?branch=main&style=flat-square&color=%2347f57d" alt="CI Status" />
+  </a>
+  <a href="https://github.com/croco-dendy/mojo-ui/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/@dendelion/mojo-ui.svg?style=flat-square&color=%2347f57d" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white&color=%2347f57d" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/React-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB&color=%2347f57d" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white&color=%2347f57d" alt="Tailwind CSS" />
+  <a href="https://github.com/croco-dendy/mojo-ui/issues">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&color=%2347f57d" alt="PRs Welcome" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@dendelion/mojo-ui">📦 NPM</a> •
+  <a href="https://github.com/croco-dendy/mojo-ui">🐙 GitHub</a> •
+  <a href="#features">✨ Features</a> •
+  <a href="#installation">🚀 Installation</a> •
+  <a href="#components">📚 Components</a>
+</p>
 
 ## Features
 
