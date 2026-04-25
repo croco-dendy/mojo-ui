@@ -1,4 +1,4 @@
-# @croco-dendy/mojo-ui
+# @dendelion/mojo-ui
 
 Retro styled React component library with nature-themed design tokens and glassmorphism.
 
@@ -15,11 +15,11 @@ Retro styled React component library with nature-themed design tokens and glassm
 ## Installation
 
 ```bash
-npm install @croco-dendy/mojo-ui
+npm install @dendelion/mojo-ui
 # or
-yarn add @croco-dendy/mojo-ui
+yarn add @dendelion/mojo-ui
 # or
-pnpm add @croco-dendy/mojo-ui
+pnpm add @dendelion/mojo-ui
 ```
 
 ### Peer Dependencies
@@ -34,7 +34,7 @@ npm install react react-dom framer-motion tailwindcss
 
 ```js
 // tailwind.config.js
-import { mojoPreset } from '@croco-dendy/mojo-ui/tailwind';
+import { mojoPreset } from '@dendelion/mojo-ui/tailwind';
 
 export default {
   presets: [mojoPreset],
@@ -46,13 +46,13 @@ export default {
 
 ```scss
 // In your app entry (e.g., main.scss)
-@import '@croco-dendy/mojo-ui/src/globals.scss';
+@import '@dendelion/mojo-ui/src/globals.scss';
 ```
 
 ### 3. Use Components
 
 ```tsx
-import { Button, Card, Input } from '@croco-dendy/mojo-ui';
+import { Button, Card, Input } from '@dendelion/mojo-ui';
 
 function App() {
   return (
@@ -113,7 +113,7 @@ import {
   CheckIcon, CloseIcon, PlusIcon, SearchIcon,
   MenuIcon, SettingsIcon, ArrowUpIcon, ArrowDownIcon,
   SortIcon, FilterIcon,
-} from '@croco-dendy/mojo-ui';
+} from '@dendelion/mojo-ui';
 ```
 
 ## Shared Styles
@@ -126,7 +126,7 @@ import {
   statsCard, statsTitle, statsValue,
   statsGrid, serviceGrid, actionsGrid, recentList,
   glassmorphism, layout, grids, sharedStyles,
-} from '@croco-dendy/mojo-ui/styles';
+} from '@dendelion/mojo-ui/styles';
 ```
 
 ## Design Tokens

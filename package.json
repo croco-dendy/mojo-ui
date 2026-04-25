@@ -1,5 +1,5 @@
 {
-  "name": "@croco-dendy/mojo-ui",
+  "name": "@dendelion/mojo-ui",
   "version": "0.1.0",
   "description": "Retro styled React component library with nature-themed design tokens and glassmorphism",
   "type": "module",

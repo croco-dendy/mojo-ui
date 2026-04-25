@@ -2,11 +2,11 @@ import type { FC } from 'react';
 import { Button } from '../../components/button';
 import { CodeBlock } from '../components/code-block';
 
-const installCode = `npm install @croco-dendy/mojo-ui
+const installCode = `npm install @dendelion/mojo-ui
 
 // or
 
-yarn add @croco-dendy/mojo-ui`;
+yarn add @dendelion/mojo-ui`;
 
 interface WelcomePageProps {
   onNavigate: (page: 'gallery' | 'layout' | 'tokens' | 'docs') => void;
