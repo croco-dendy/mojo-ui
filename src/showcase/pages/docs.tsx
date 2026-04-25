@@ -18,7 +18,7 @@ export default {
 // 4. Import global styles in your app entry
 import 'mojo-ui/globals.scss';`;
 
-const usageExample = `import { Button, Card, Input } from 'mojo-ui';
+const usageExample = `import { Button, Card, Input } from '@croco-dendy/mojo-ui';
 
 function App() {
   return (
@@ -733,7 +733,7 @@ export const DocsPage: FC = () => {
   ModalProps,
   TabItem,
   StatItem 
-} from 'mojo-ui';
+} from '@croco-dendy/mojo-ui';
 
 // Use types in your components
 interface MyComponentProps {

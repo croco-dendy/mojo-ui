@@ -225,7 +225,7 @@ export const ComponentsPage: FC = () => {
             title="Button"
             description="Interactive button component with multiple variants and sizes."
             category="basic"
-            codeExample={`import { Button } from 'mojo-ui';
+            codeExample={`import { Button } from '@croco-dendy/mojo-ui';
 
 <Button variant="green" size="medium" title="Click me" onClick={handleClick} />
 <Button variant="red" size="small" title="Danger" />
@@ -271,7 +271,7 @@ export const ComponentsPage: FC = () => {
             title="IconButton"
             description="Circular button designed for icon content."
             category="basic"
-            codeExample={`import { IconButton } from 'mojo-ui';
+            codeExample={`import { IconButton } from '@croco-dendy/mojo-ui';
 import { PlusIcon } from 'mojo-ui/icons';
 
 <IconButton variant="green" size="medium">
@@ -310,7 +310,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Card"
             description="Container component with subtle borders and optional actions."
             category="layout"
-            codeExample={`import { Card } from 'mojo-ui';
+            codeExample={`import { Card } from '@croco-dendy/mojo-ui';
 
 <Card 
   title="Card Title"
@@ -359,7 +359,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Input"
             description="Text input field with label support and multiple sizes."
             category="form"
-            codeExample={`import { Input } from 'mojo-ui';
+            codeExample={`import { Input } from '@croco-dendy/mojo-ui';
 
 <Input 
   size="medium"
@@ -403,7 +403,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Select"
             description="Dropdown select component with custom styling."
             category="form"
-            codeExample={`import { Select } from 'mojo-ui';
+            codeExample={`import { Select } from '@croco-dendy/mojo-ui';
 
 <Select
   label="Choose option"
@@ -450,7 +450,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Textarea"
             description="Multi-line text input with auto-resize support."
             category="form"
-            codeExample={`import { Textarea } from 'mojo-ui';
+            codeExample={`import { Textarea } from '@croco-dendy/mojo-ui';
 
 <Textarea
   label="Description"
@@ -493,7 +493,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Checkbox"
             description="Toggle checkbox with label support."
             category="form"
-            codeExample={`import { Checkbox } from 'mojo-ui';
+            codeExample={`import { Checkbox } from '@croco-dendy/mojo-ui';
 
 <Checkbox
   checked={isChecked}
@@ -537,7 +537,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Switch"
             description="Toggle switch with multiple color variants."
             category="form"
-            codeExample={`import { Switch } from 'mojo-ui';
+            codeExample={`import { Switch } from '@croco-dendy/mojo-ui';
 
 <Switch
   variant="green"
@@ -589,7 +589,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Panel"
             description="Multi-section container with retro panel styling."
             category="layout"
-            codeExample={`import { Panel } from 'mojo-ui';
+            codeExample={`import { Panel } from '@croco-dendy/mojo-ui';
 
 <Panel
   title="Control Panel"
@@ -658,7 +658,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="StatsGrid"
             description="Grid layout for displaying statistics."
             category="layout"
-            codeExample={`import { StatsGrid } from 'mojo-ui';
+            codeExample={`import { StatsGrid } from '@croco-dendy/mojo-ui';
 
 <StatsGrid
   columns={2}
@@ -701,7 +701,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Tabs"
             description="Tab navigation with animated content switching."
             category="navigation"
-            codeExample={`import { Tabs } from 'mojo-ui';
+            codeExample={`import { Tabs } from '@croco-dendy/mojo-ui';
 
 <Tabs
   variant="green"
@@ -766,7 +766,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="NavigationIsland"
             description="Floating navigation bar with pill-style tabs."
             category="navigation"
-            codeExample={`import { NavigationIsland } from 'mojo-ui';
+            codeExample={`import { NavigationIsland } from '@croco-dendy/mojo-ui';
 
 <NavigationIsland
   items={[
@@ -810,7 +810,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="ProgressBar"
             description="Segmented progress bar with lamp-style indicators."
             category="feedback"
-            codeExample={`import { ProgressBar } from 'mojo-ui';
+            codeExample={`import { ProgressBar } from '@croco-dendy/mojo-ui';
 
 <ProgressBar
   variant="green"
@@ -852,7 +852,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="CircularProgress"
             description="Circular progress indicator with percentage display."
             category="feedback"
-            codeExample={`import { CircularProgress } from 'mojo-ui';
+            codeExample={`import { CircularProgress } from '@croco-dendy/mojo-ui';
 
 <CircularProgress
   percentage={65}
@@ -910,7 +910,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="StatsCard"
             description="Compact card for displaying a single statistic."
             category="feedback"
-            codeExample={`import { StatsCard } from 'mojo-ui';
+            codeExample={`import { StatsCard } from '@croco-dendy/mojo-ui';
 
 <StatsCard
   title="Active Users"
@@ -951,7 +951,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="StatusIndicator"
             description="Visual status badge with animated dot indicator."
             category="feedback"
-            codeExample={`import { StatusIndicator } from 'mojo-ui';
+            codeExample={`import { StatusIndicator } from '@croco-dendy/mojo-ui';
 
 <StatusIndicator status="running" />
 <StatusIndicator status="stopped" />
@@ -978,7 +978,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Skeleton"
             description="Loading placeholder with pulse animation."
             category="feedback"
-            codeExample={`import { Skeleton, SkeletonText } from 'mojo-ui';
+            codeExample={`import { Skeleton, SkeletonText } from '@croco-dendy/mojo-ui';
 
 <Skeleton variant="rectangular" width={200} height={20} />
 <Skeleton variant="circular" width={40} height={40} />
@@ -1031,7 +1031,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Modal"
             description="Dialog overlay for important interactions."
             category="overlay"
-            codeExample={`import { Modal } from 'mojo-ui';
+            codeExample={`import { Modal } from '@croco-dendy/mojo-ui';
 
 <Modal
   isOpen={isOpen}
@@ -1106,7 +1106,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Popup"
             description="Dropdown menu for actions and navigation."
             category="overlay"
-            codeExample={`import { Popup, PopupItem } from 'mojo-ui';
+            codeExample={`import { Popup, PopupItem } from '@croco-dendy/mojo-ui';
 
 <Popup trigger={<Button title="Menu" />}>
   <PopupItem onClick={handleEdit}>Edit</PopupItem>
@@ -1141,7 +1141,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Tooltip"
             description="Hover information tooltip with multiple placement options."
             category="overlay"
-            codeExample={`import { Tooltip } from 'mojo-ui';
+            codeExample={`import { Tooltip } from '@croco-dendy/mojo-ui';
 
 <Tooltip content="This is helpful information" placement="top">
   <Button title="Hover me" />
@@ -1195,7 +1195,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Radio"
             description="Radio button group with horizontal and vertical layouts."
             category="form"
-            codeExample={`import { Radio } from 'mojo-ui';
+            codeExample={`import { Radio } from '@croco-dendy/mojo-ui';
 
 <Radio
   name="plan"
@@ -1267,7 +1267,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Slider"
             description="Range slider with analog retro feel and real-time value display."
             category="form"
-            codeExample={`import { Slider } from 'mojo-ui';
+            codeExample={`import { Slider } from '@croco-dendy/mojo-ui';
 
 <Slider
   value={volume}
@@ -1345,7 +1345,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Badge"
             description="Status and label badges with dot indicators and pulse animation."
             category="feedback"
-            codeExample={`import { Badge } from 'mojo-ui';
+            codeExample={`import { Badge } from '@croco-dendy/mojo-ui';
 
 <Badge variant="success" dot>Online</Badge>
 <Badge variant="warning">Pending</Badge>
@@ -1413,7 +1413,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Alert"
             description="Alert banners for important messages with icons and dismiss actions."
             category="feedback"
-            codeExample={`import { Alert } from 'mojo-ui';
+            codeExample={`import { Alert } from '@croco-dendy/mojo-ui';
 
 <Alert
   variant="success"
@@ -1468,7 +1468,7 @@ import { PlusIcon } from 'mojo-ui/icons';
             title="Toast"
             description="Notification toasts with auto-dismiss and progress indicator."
             category="feedback"
-            codeExample={`import { Toast, ToastContainer, generateToastId } from 'mojo-ui';
+            codeExample={`import { Toast, ToastContainer, generateToastId } from '@croco-dendy/mojo-ui';
 
 const addToast = () => {
   const toast = {
@@ -1557,7 +1557,7 @@ const addToast = () => {
             title="DataTable"
             description="Table component with retro styling, sorting, and row selection."
             category="data-display"
-            codeExample={`import { DataTable } from 'mojo-ui';
+            codeExample={`import { DataTable } from '@croco-dendy/mojo-ui';
 
 <DataTable
   data={users}
