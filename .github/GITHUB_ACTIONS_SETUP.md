@@ -60,57 +60,61 @@ To enable automatic publishing to NPM, you need to add an NPM access token to Gi
 ### 3. Release Workflow (`.github/workflows/release.yml`)
 
 **Triggers:**
-- Push to `main`
+- Push to `main` with changes to source files
 
 **Behavior:**
-- If changesets exist: Creates "Version Packages" PR
-- If "Version Packages" PR merged: Publishes to NPM
+1. Checks if version in `package.json` is already published
+2. If new version: runs CI checks
+3. Publishes to NPM
+4. Creates Git tag
+5. Creates GitHub Release
 
 ---
 
-## Changesets Workflow
+## Release Workflow
 
-### For Contributors
-
-When you make a change that should be released:
+### To Release a New Version
 
 ```bash
-# 1. Make your changes
-# ... edit code ...
+# 1. Bump version locally
+npm version patch   # or minor, major
 
-# 2. Add a changeset
-npx changeset
+# 2. Push to main
+git push origin main
 
-# 3. Follow the prompts:
-#    - Select patch/minor/major
-#    - Write a summary
-
-# 4. Commit the changeset with your code
-git add .
-git commit -m "feat: add new feature"
-git push
+# 3. GitHub Actions automatically:
+#    - Detects new version
+#    - Runs CI checks
+#    - Publishes to NPM
+#    - Creates Git tag: v0.1.2
+#    - Creates GitHub Release
 ```
 
-### For Maintainers
+### What Happens
 
-When you're ready to release:
-
-1. The Changesets bot will create a "Version Packages" PR automatically
-2. Review the PR:
-   - Check version bumps are correct
-   - Review CHANGELOG updates
-3. Merge the PR
-4. The Release workflow will automatically:
-   - Update version in `package.json`
-   - Update `CHANGELOG.md`
-   - Publish to NPM
-   - Create GitHub Release
+```
+Developer                    GitHub Actions                NPM
+    |                              |                        |
+    |-- npm version patch -------->|                        |
+    |-- git push origin main ----->|                        |
+    |                              |-- Check if v0.1.2      |
+    |                              |   exists on NPM        |
+    |                              |                        |
+    |                              |-- Run CI checks        |
+    |                              |   (types, build)       |
+    |                              |                        |
+    |                              |-- Publish to NPM ----->|
+    |                              |                        |
+    |                              |-- Create Git tag       |
+    |                              |-- Create GitHub        |
+    |                              |   Release              |
+```
 
 ---
 
 ## Versioning Guide
 
-### When to use each type:
+### When to use each bump:
 
 | Type | Example | Version Change |
 |------|---------|----------------|
@@ -118,55 +122,19 @@ When you're ready to release:
 | **minor** | New feature, new component | 0.1.0 → 0.2.0 |
 | **major** | Breaking change, API removal | 0.1.0 → 1.0.0 |
 
-### Example Changesets
-
-**Patch (bug fix):**
-```markdown
----
-"@dendelion/mojo-ui": patch
 ---
 
-Fix button hover state not working in Safari
-```
+## Skip Release
 
-**Minor (new feature):**
-```markdown
----
-"@dendelion/mojo-ui": minor
----
-
-Add new `Tooltip` component with 4 placement options
-```
-
-**Major (breaking change):**
-```markdown
----
-"@dendelion/mojo-ui": major
----
-
-Remove deprecated `OldButton` component
-```
-
----
-
-## Manual Release (Emergency)
-
-If you need to publish manually:
+To push without triggering a release:
 
 ```bash
-# 1. Version packages locally
-npm run changeset:version
+# Skip release workflow
+git commit -m "docs: update README [skip-release]"
 
-# 2. Commit changes
-git add .
-git commit -m "chore: version packages"
-git push
-
-# 3. Publish to NPM
-npm run changeset:publish
+# Skip all workflows
+git commit -m "docs: update README [skip ci]"
 ```
-
-**Note:** This requires `NPM_TOKEN` to be set in your environment.
 
 ---
 
@@ -179,12 +147,6 @@ Check workflow status:
 
 ## Troubleshooting
 
-### Changeset PR not created
-
-- Ensure you have changeset files in `.changeset/` directory
-- Check the Release workflow ran successfully
-- Look for errors in the Actions logs
-
 ### Publish fails with 403
 
 - Check `NPM_TOKEN` is correctly set in GitHub Secrets
@@ -193,10 +155,22 @@ Check workflow status:
 
 ### Version already exists
 
-Changesets handles this automatically - it checks npm before publishing.
+The workflow checks npm before publishing. If the version exists, it skips publishing.
 
 ### Build fails
 
 - Check that `npm run check-types` passes locally
 - Check that `npm run build` works locally
 - Review the Actions logs for specific errors
+
+### Release not triggered
+
+Make sure you're pushing changes to:
+- `src/**`
+- `package.json`
+- `tsconfig.json`
+- `vite.config.ts`
+- `tailwind.config.js`
+- `tailwind.ts`
+
+Or use `[skip-release]` in commit message to skip.

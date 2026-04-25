@@ -39,13 +39,10 @@
     "lint": "biome check ./src",
     "lint:fix": "biome check ./src --write",
     "ci": "npm run check-types && npm run build && npm run test",
-    "changeset": "changeset",
-    "changeset:version": "changeset version",
-    "changeset:publish": "changeset publish",
-    "release": "npm run ci && changeset publish",
+    "version": "changeset version",
+    "release": "npm run ci && npm publish --access public",
     "publish:jsr": "npx jsr publish",
-    "publish:jsr:dry": "npx jsr publish --dry-run",
-    "publish:npm": "npm publish --access public"
+    "publish:jsr:dry": "npx jsr publish --dry-run"
   },
   "keywords": [
     "react",

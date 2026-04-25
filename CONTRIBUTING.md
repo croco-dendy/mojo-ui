@@ -28,102 +28,64 @@ npm run dev
 | `npm run lint` | Run linter |
 | `npm run lint:fix` | Fix linting issues |
 | `npm run ci` | Run full CI pipeline (types + build + test) |
-| `npm run changeset` | Create a new changeset |
-| `npm run changeset:version` | Version packages (used by CI) |
-| `npm run changeset:publish` | Publish packages (used by CI) |
 
 ## Making Changes
 
-### 1. Create a Branch
-
-```bash
-git checkout -b feature/my-feature
-```
-
-### 2. Make Your Changes
+### 1. Make Your Changes
 
 Edit the code, add features, fix bugs, etc.
 
-### 3. Add a Changeset
-
-**This is required for any change that should be released!**
-
 ```bash
-npx changeset
+# Make changes to src/
+# Test locally with npm run dev
 ```
 
-This will:
-1. Ask what kind of change it is:
-   - `patch` - Bug fixes (0.1.0 → 0.1.1)
-   - `minor` - New features (0.1.0 → 0.2.0)
-   - `major` - Breaking changes (0.1.0 → 1.0.0)
-2. Ask for a summary of the change
-3. Create a markdown file in `.changeset/`
+### 2. Run CI Checks Locally
 
-**Example:**
 ```bash
-$ npx changeset
-🦋  What kind of change is this for @dendelion/mojo-ui? … 
-❯ patch  # Bug fixes
-  minor  # New features
-  major  # Breaking changes
-
-🦋  Please enter a summary for this change …
-Added new Button variant "ghost" for subtle actions
-
-🦋  Changeset added! …
+npm run ci
 ```
 
-### 4. Commit Your Changes
+### 3. Commit Your Changes
 
 ```bash
 git add .
-git commit -m "feat: add ghost button variant"
-git push origin feature/my-feature
+git commit -m "feat: add new feature"
+git push origin main
 ```
-
-### 5. Create a Pull Request
-
-Open a PR on GitHub. The CI will run automatically.
 
 ## Release Process
 
 ### How Releases Work
 
-We use **Changesets** for version management:
+When you push to `main` with a **version bump** in `package.json`:
 
-1. **You create changesets** with your PRs
-2. **GitHub Action** creates a "Version Packages" PR automatically
-3. **You review & merge** the PR when ready to release
-4. **GitHub Action** publishes to NPM automatically
+1. GitHub Actions detects the new version
+2. Runs CI checks (types, build, test)
+3. Publishes to NPM automatically
+4. Creates Git tag and GitHub Release
 
-### Release Workflow
+### To Release a New Version
 
-```
-Developer                    GitHub Actions                NPM
-    |                              |                        |
-    |-- PR with changeset -------->|                        |
-    |                              |                        |
-    |-- Merge PR ----------------->|                        |
-    |                              |-- Create "Version      |
-    |                              |   Packages" PR         |
-    |                              |                        |
-    |-- Review & merge "Version    |                        |
-    |   Packages" PR ------------->|                        |
-    |                              |-- Update version       |
-    |                              |-- Update CHANGELOG     |
-    |                              |-- Publish to NPM ----->|
-    |                              |                        |
-    |                              |-- Create GitHub        |
-    |                              |   Release              |
+```bash
+# 1. Update version
+npm version patch   # 0.1.0 -> 0.1.1 (bug fixes)
+npm version minor   # 0.1.0 -> 0.2.0 (new features)
+npm version major   # 0.1.0 -> 1.0.0 (breaking changes)
+
+# 2. Push to main
+git push origin main
+
+# 3. GitHub Actions automatically publishes to NPM!
 ```
 
-### What Happens When You Merge a Changeset PR?
+### What Gets Published
 
-1. Version is bumped in `package.json`
-2. `CHANGELOG.md` is updated
-3. Package is published to NPM
-4. GitHub Release is created
+- ESM build (`dist/index.mjs`)
+- CJS build (`dist/index.js`)
+- CSS (`dist/index.css`)
+- TypeScript declarations (`dist/*.d.ts`)
+- Source files for Tailwind preset
 
 ## Code Style
 
@@ -151,12 +113,20 @@ We follow conventional commits:
 To push without triggering workflows:
 
 ```bash
+# Skip release workflow
+git commit -m "docs: update README [skip-release]"
+
 # Skip all workflows
 git commit -m "docs: update README [skip ci]"
-
-# Skip only deploy
-git commit -m "docs: update README [skip-deploy]"
 ```
+
+## Versioning Guide
+
+| Bump | When to Use | Example |
+|------|-------------|---------|
+| **patch** | Bug fixes, docs updates | Fix button hover state |
+| **minor** | New features, components | Add Tooltip component |
+| **major** | Breaking changes, API removal | Remove deprecated component |
 
 ## Questions?
 
