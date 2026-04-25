@@ -34,9 +34,11 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "test": "echo 'No tests yet'",
     "check-types": "tsc --noEmit",
     "lint": "biome check ./src",
     "lint:fix": "biome check ./src --write",
+    "ci": "npm run check-types && npm run build && npm run test",
     "publish:jsr": "npx jsr publish",
     "publish:jsr:dry": "npx jsr publish --dry-run",
     "publish:npm": "npm publish --access public"
