@@ -1,6 +1,7 @@
 import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig(({ command }) => {
   const baseConfig = {
@@ -36,6 +37,14 @@ export default defineConfig(({ command }) => {
 
   return {
     ...baseConfig,
+    plugins: [
+      ...baseConfig.plugins,
+      dts({
+        include: ['src/**/*'],
+        exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/showcase/**/*'],
+        insertTypesEntry: true,
+      }),
+    ],
     build: {
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
