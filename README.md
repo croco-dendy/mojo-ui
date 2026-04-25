@@ -14,12 +14,24 @@ Retro styled React component library with nature-themed design tokens and glassm
 
 ## Installation
 
+### From NPM
+
 ```bash
 npm install mojo-ui
 # or
 yarn add mojo-ui
 # or
 pnpm add mojo-ui
+```
+
+### From JSR (JavaScript Registry)
+
+```bash
+# With Deno
+npx jsr add @croco-dendy/mojo-ui
+
+# With npm (using jsr.io)
+npm install @jsr/croco-dendy__mojo-ui
 ```
 
 ### Peer Dependencies
